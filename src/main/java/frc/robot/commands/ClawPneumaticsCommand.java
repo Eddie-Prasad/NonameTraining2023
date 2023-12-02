@@ -9,24 +9,23 @@ import frc.robot.subsystems.ClawPneumaticSubsystem;
 
 public class ClawPneumaticsCommand extends CommandBase {
   /** Creates a new ClawPneumaticsCommand. */
-  ClawPneumaticSubsystem m_clawPneumaticSubsystem;
+  ClawPneumaticSubsystem clawPneuamticSubsystem;
   Boolean initialClawValue;
   public ClawPneumaticsCommand(ClawPneumaticSubsystem clawPneumaticSubsystem) {
-    m_clawPneumaticSubsystem = clawPneumaticSubsystem;
-    System.out.println("Constructer working");
-    addRequirements(m_clawPneumaticSubsystem);
+    this.clawPneuamticSubsystem = clawPneumaticSubsystem;
+    addRequirements(this.clawPneuamticSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initialClawValue = m_clawPneumaticSubsystem.getClawPosition();
-    if (m_clawPneumaticSubsystem.getClawPosition()){
-      m_clawPneumaticSubsystem.closeClaw();
+    initialClawValue = clawPneuamticSubsystem.getClawPosition();
+    if (clawPneuamticSubsystem.getClawPosition()){
+      clawPneuamticSubsystem.closeClaw();
       System.out.println("closeClaw");
     } else {
-      m_clawPneumaticSubsystem.openClaw();
+      clawPneuamticSubsystem.openClaw();
       System.out.println("openClaw");
     }
   }
@@ -44,7 +43,7 @@ public class ClawPneumaticsCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(initialClawValue != m_clawPneumaticSubsystem.getClawPosition()){
+    if(initialClawValue != clawPneuamticSubsystem.getClawPosition()){
       return true;
     }
     return false;

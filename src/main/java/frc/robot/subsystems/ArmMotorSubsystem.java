@@ -18,12 +18,6 @@ public class ArmMotorSubsystem extends SubsystemBase {
     armMotor = new TalonFX(Constants.ARM_MOTOR_CHANNEL);
     pJoystick = new Joystick(Constants.RIGHT_JOYSTICK);
   }
-  public void armUp() {
-    armMotor.set(ControlMode.PercentOutput, 0.2);
-  }
-  public void armDown() {
-    armMotor.set(ControlMode.PercentOutput,-0.2);
-  }
   public void armStop() {
     armMotor.set(ControlMode.PercentOutput, 0);
   }

@@ -9,23 +9,23 @@ import frc.robot.subsystems.ArmPneumaticSubsystem;
 
 public class ArmPneumaticsCommand extends CommandBase {
   /** Creates a new ArmPneumaticsCommand. */
-  ArmPneumaticSubsystem m_armPneumaticSubsystem;
+  ArmPneumaticSubsystem armPneumaticSubsystem;
   boolean initialArmPosition;
   public ArmPneumaticsCommand(ArmPneumaticSubsystem armPneumaticSubsystem) {
-    m_armPneumaticSubsystem = armPneumaticSubsystem;
-    addRequirements(m_armPneumaticSubsystem);
+    this.armPneumaticSubsystem = armPneumaticSubsystem;
+    addRequirements(this.armPneumaticSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initialArmPosition = m_armPneumaticSubsystem.getArmPosition();
-    if (m_armPneumaticSubsystem.getArmPosition()){
-      m_armPneumaticSubsystem.armRetract();
+    initialArmPosition = armPneumaticSubsystem.getArmPosition();
+    if (armPneumaticSubsystem.getArmPosition()){
+      armPneumaticSubsystem.armRetract();
       System.out.println("armRetract");
     } else {
-      m_armPneumaticSubsystem.armExtend();
+      armPneumaticSubsystem.armExtend();
       System.out.println("armExtend");
     }
   }
@@ -41,7 +41,7 @@ public class ArmPneumaticsCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (initialArmPosition != m_armPneumaticSubsystem.getArmPosition()) {
+    if (initialArmPosition != armPneumaticSubsystem.getArmPosition()) {
       return true;
     }
     else {
